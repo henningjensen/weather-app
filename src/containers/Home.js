@@ -45,6 +45,8 @@ export default class Home extends Component {
       <div className="Home">
         <div className="lander">
           {this.renderCurrentTemperature(this.state.temperatures)}
+          <p>Nåværende plassering av sensor: kontor</p>
+          <p>Live værdata fra Søndre Lindheim Gard på Gvarv - Fruktbygda</p>
         </div>
       </div>
     );
