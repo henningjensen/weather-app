@@ -32,10 +32,10 @@ export default class Home extends Component {
       return ( 
         temperatures.length !== 0 ?
         <div>
-            <h1>{Math.round(temperatures[0].temperature * 100)/100}&deg;</h1>
-            <h2>{new Date(temperatures[0].timestamp).toLocaleString()}</h2>
-            <p>Vindhastighet: { temperatures[0].CurrentWindSpeed }</p>
-            <p>Vindretning: { temperatures[0].CurrentWindDirection }</p>
+            <h3>Temperatur: {Math.round(temperatures[0].temperature * 100)/100}&deg;</h3>
+            <h3>Vindhastighet: { Math.round(temperatures[0].CurrentWindSpeed / 3.6) / 10 } m/s</h3>
+            <h3>Vindretning: { temperatures[0].CurrentWindDirection }</h3>
+            <h3>Sist oppdatert: {new Date(temperatures[0].timestamp).toLocaleString()}</h3>
         </div>
         :
         <div />
@@ -47,8 +47,6 @@ export default class Home extends Component {
       <div className="Home">
         <div className="lander">
           {this.renderCurrentTemperature(this.state.temperatures)}
-          <p>Nåværende plassering av sensor: garasjen</p>
-          <p>Live værdata fra Søndre Lindheim Gard på Gvarv - Fruktbygda</p>
         </div>
       </div>
     );
