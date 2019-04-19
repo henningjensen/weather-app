@@ -42,10 +42,20 @@ export default class Home extends Component {
       );
   }
 
+  loading() {
+    if (this.state.isLoading) {
+      return "Henter data fra værstasjon..."
+    }
+    else {
+      return ""
+    }
+  }
+
   render() {
     return (
       <div className="Home">
         <div className="lander">
+          {this.loading()}
           {this.renderCurrentTemperature(this.state.temperatures)}
         </div>
       </div>
