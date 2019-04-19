@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
 import "./Home.css";
+import { Link } from 'react-router-dom'
 
 export default class Home extends Component {
 
@@ -57,6 +58,7 @@ export default class Home extends Component {
         <div className="lander">
           {this.loading()}
           {this.renderCurrentTemperature(this.state.temperatures)}
+          <Link to="/today">Historikk - i dag</Link>
         </div>
       </div>
     );

@@ -7,7 +7,9 @@ class App extends Component {
     return (
       <div className="App container">
         <Routes />
-        <footer>Live værdata fra Søndre Lindheim Gard på Gvarv</footer>
+        <footer>
+          <p>Live værdata fra Søndre Lindheim Gard på Gvarv - Fruktbygda</p>
+        </footer>
       </div>
     );
   }
