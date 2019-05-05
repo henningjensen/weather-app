@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
 import "./Home.css";
-import { Link } from 'react-router-dom'
+import WeatherData from "../WeatherData.js";
 
 export default class Home extends Component {
 
@@ -30,16 +30,29 @@ export default class Home extends Component {
   }
   
   renderCurrentTemperature(temperatures) {
+      
+      if (temperatures.length === 0)
+        return "<div/>";
+
+      const weatherData = new WeatherData(temperatures[0]);
+
       return ( 
-        temperatures.length !== 0 ?
-        <div>
-            <h3>Temperatur: {Math.round(temperatures[0].temperature * 100)/100}&deg;</h3>
-            <h3>Vindhastighet: { Math.round(temperatures[0].CurrentWindSpeed / 3.6) / 10 } m/s</h3>
-            <h3>Vindretning: { temperatures[0].CurrentWindDirection }</h3>
-            <h3>Sist oppdatert: {new Date(temperatures[0].timestamp).toLocaleString()}</h3>
+        <div class="dashboard">
+          <div class="card teal lighten-5">
+            <div class="card-content black-text">
+              <span class="card-title">Temperatur</span>
+              <h1>{weatherData.temperature()}&deg;</h1>
+            </div>
+          </div>
+          <div class="card teal lighten-5">
+            <div class="card-content black-text">
+              <span class="card-title">Vind</span>
+              <h1>{weatherData.windspeed()} m/s - { temperatures[0].CurrentWindDirection }&deg;</h1>
+            </div>
+          </div>
+          <hr/>
+          <h5>Sist oppdatert: {new Date(temperatures[0].timestamp).toLocaleString()}</h5>
         </div>
-        :
-        <div />
       );
   }
 
@@ -54,12 +67,9 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="Home">
-        <div className="lander">
-          {this.loading()}
-          {this.renderCurrentTemperature(this.state.temperatures)}
-          <Link to="/today">Historikk - i dag</Link>
-        </div>
+      <div>
+        {this.loading()}
+        {this.renderCurrentTemperature(this.state.temperatures)}
       </div>
     );
   }

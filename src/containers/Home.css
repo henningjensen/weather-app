@@ -1,14 +1,11 @@
-.Home .lander {
-    padding: 80px 0;
-    text-align: center;
-  }
-  
-  .Home .lander h1 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600;
-  }
-  
-  .Home .lander p {
-    color: #999;
-  }
-  
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+}
+.dashboard .card {
+    padding: 20px;
+    margin: 5%;
+    border: 1px solid #ccc;
+
+    flex-basis: 40%;
+}

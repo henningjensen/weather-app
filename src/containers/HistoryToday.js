@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-//import "./HistoryToday.css";
+import WeatherData from "../WeatherData.js";
 
 export default class HistoryToday extends Component {
 
@@ -39,14 +39,17 @@ export default class HistoryToday extends Component {
               <th>Vind (m/s)</th>
               <th>Nedbør</th>
             </thead>
-            {[...data].reverse().map(item => (
-              <tr>
-                <td>{new Date(item.timestamp).toLocaleTimeString()}</td>
-                <td>{Math.round(item.temperature * 100)/100}</td>
-                <td>{Math.round(item.CurrentWindSpeed / 3.6)/10}</td>
-                <td>{item.RainTotal }</td>
-              </tr>
-            ))}            
+            {[...data].reverse().map(item => {
+                let weatherdata = new WeatherData(item)
+                return (
+                <tr>
+                  <td>{new Date(item.timestamp).toLocaleTimeString()}</td>
+                  <td>{weatherdata.temperature()}</td>
+                  <td>{weatherdata.windspeed()}</td>
+                  <td>{item.RainTotal }</td>
+                </tr>
+              )}
+            )}            
           </table>
         </div>
         :
