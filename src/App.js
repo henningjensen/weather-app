@@ -7,10 +7,11 @@ class App extends Component {
   render() {
     return (
       <div className="app container">
-        <nav>
-          <div class="nav-wrapper white">
             <h1>Været på Søndre Lindheim Gard - Gvarv</h1>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+       
+            <nav>
+              <div class="nav-wrapper white">
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li>
                 <Link to="/today" class="black-text">Historikk - i dag</Link>
               </li>
