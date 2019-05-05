@@ -9,7 +9,7 @@ class App extends Component {
       <div className="app container">
         <nav>
           <div class="nav-wrapper white">
-            <a href="/" class="brand-logo black-text">Været på Søndre Lindheim Gard - Gvarv</a>
+            <h1>Været på Søndre Lindheim Gard - Gvarv</h1>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li>
                 <Link to="/today" class="black-text">Historikk - i dag</Link>
