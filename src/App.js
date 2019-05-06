@@ -7,18 +7,11 @@ class App extends Component {
   render() {
     return (
       <div className="app container">
-            <h1>Været på Søndre Lindheim Gard - Gvarv</h1>
-       
-            <nav>
-              <div class="nav-wrapper white">
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li>
-                <Link to="/today" class="black-text">Historikk - i dag</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <h1>        
+          <Link to="/">Været på Søndre Lindheim Gard - Gvarv</Link>
+        </h1>
         <Routes />
+        <Link to="/today" class="waves-effect waves-light btn">Historikk - i dag</Link>
       </div>
     );
   }

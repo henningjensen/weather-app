@@ -6,6 +6,16 @@
     padding: 20px;
     margin: 5%;
     border: 1px solid #ccc;
+}
 
-    flex-basis: 40%;
+@media (max-width:639px) {
+    .dashboard .card {
+        flex-basis: 100%;
+    }
+}
+
+@media (min-width: 640px){
+    .dashboard .card {
+        flex-basis: 40%;
+    } 
 }
