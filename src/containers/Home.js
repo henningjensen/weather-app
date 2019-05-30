@@ -36,6 +36,8 @@ export default class Home extends Component {
 
       const weatherData = new WeatherData(temperatures[0]);
 
+      console.log(weatherData);
+
       return ( 
         <div class="dashboard">
           <div class="card teal lighten-5">
@@ -48,6 +50,10 @@ export default class Home extends Component {
             <div class="card-content black-text">
               <span class="card-title">Vind</span>
               <h1>{weatherData.windspeed()} m/s - { temperatures[0].CurrentWindDirection }&deg;</h1>
+              <h2>Vindkast: </h2>
+                <h3>Nå: {weatherData.currentWindGust()} m/s</h3>
+                <h3>Maks: {weatherData.windGustMax()} m/s</h3>
+                <h3>Min: {weatherData.windGustMin()} m/s</h3>
             </div>
           </div>
           <hr/>

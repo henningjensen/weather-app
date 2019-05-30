@@ -37,6 +37,7 @@ export default class HistoryToday extends Component {
               <th>Tidspunkt</th>
               <th>Temperatur (C&deg;)</th>
               <th>Vind (m/s)</th>
+              <th>Vindkast (nå, maks, min)(m/s)</th>
               <th>Nedbør</th>
             </thead>
             {[...data].reverse().map(item => {
@@ -46,6 +47,9 @@ export default class HistoryToday extends Component {
                   <td>{new Date(item.timestamp).toLocaleTimeString()}</td>
                   <td>{weatherdata.temperature()}</td>
                   <td>{weatherdata.windspeed()}</td>
+                  <td>
+                    {weatherdata.currentWindGust()} - {weatherdata.windGustMax()} - {weatherdata.windGustMin()}
+                  </td>
                   <td>{item.RainTotal }</td>
                 </tr>
               )}
