@@ -3,6 +3,7 @@ import { API } from "aws-amplify";
 import "./Home.css";
 import WeatherData from "../WeatherData.js";
 
+
 export default class Home extends Component {
 
   constructor(props) {
@@ -57,6 +58,8 @@ export default class Home extends Component {
             </div>
           </div>
           <hr/>
+         
+
           <h5>Sist oppdatert: {new Date(temperatures[0].timestamp).toLocaleString()}</h5>
         </div>
       );

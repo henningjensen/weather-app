@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
 import WeatherData from "../WeatherData.js";
+import { VictoryLine, VictoryChart, VictoryAxis,
+  VictoryTheme, VictoryTooltip } from 'victory';
+
 
 export default class HistoryToday extends Component {
 
@@ -15,8 +18,9 @@ export default class HistoryToday extends Component {
 
   async componentDidMount() {
     try {
-      const data = await this.fetchData();
-      this.setState({ data });
+      const items = await this.fetchData();
+      const data = items.map(item => new WeatherData(item));
+      this.setState({ data  });
     } catch (e) {
       alert(e);
     }
@@ -25,35 +29,84 @@ export default class HistoryToday extends Component {
   }
   
   fetchData() {
-    return API.get("weather", "/today");
+    var items = API.get("weather", "/today");
+    return items;
   }
   
   renderTable(data) {
       return ( 
         data.length !== 0 ?
         <div>
-          <table class="table">
+          <div style={{width: 500, height:200}}>
+
+          <h2>Temperatur</h2>          
+          <VictoryChart theme={VictoryTheme.material} scale={{x: 'time'}} height={200} width={500}>
+          <VictoryAxis
+              tickCount={5}
+              tickFormat={(x) => x.getHours()}
+            />
+            <VictoryAxis dependentAxis label="temperatur C&deg;" style={{ axisLabel: {padding: 40} }}/>
+            <VictoryLine
+              data={data}
+              x={(d) => d.timestampAsDate()}
+              y={(d) => d.temperature()} 
+              labels={({ datum }) => `x: ${datum.x}, y: ${datum.y}`}
+              labelComponent={
+                <VictoryTooltip />
+              }
+            />
+          </VictoryChart>
+          
+          </div>
+
+          <div style={{width: 500, height:200}}>
+            <h2>Vind</h2>
+          <VictoryChart theme={VictoryTheme.material} scale={{x: 'time'}} height={200} width={500}>
+          <VictoryAxis
+              tickCount={5}
+              tickFormat={(x) => x.getHours()}
+            />
+            <VictoryAxis dependentAxis label="vind m/s" style={{ axisLabel: {padding: 40} }}/>
+            <VictoryLine
+              data={data}
+              x={(d) => d.timestampAsDate()}
+              y={(d) => d.windspeed()} 
+              labels={({ datum }) => `x: ${datum.x}, y: ${datum.y}`}
+              labelComponent={
+                <VictoryTooltip />
+              }
+            />
+          </VictoryChart>
+          </div>
+
+<br/>
+
+
+          <table className="table">
             <thead>
-              <th>Tidspunkt</th>
-              <th>Temperatur (C&deg;)</th>
-              <th>Vind (m/s)</th>
-              <th>Vindkast (nå, maks, min)(m/s)</th>
-              <th>Nedbør</th>
+              <tr>
+                <th>Tidspunkt</th>
+                <th>Temperatur (C&deg;)</th>
+                <th>Vind (m/s)</th>
+                <th>Vindkast (nå, maks, min)(m/s)</th>
+                <th>Nedbør</th>
+              </tr>
             </thead>
+            <tbody>
             {[...data].reverse().map(item => {
-                let weatherdata = new WeatherData(item)
                 return (
-                <tr>
-                  <td>{new Date(item.timestamp).toLocaleTimeString()}</td>
-                  <td>{weatherdata.temperature()}</td>
-                  <td>{weatherdata.windspeed()}</td>
+                <tr key="item.timestamp">
+                  <td>{item.timestampAsDate().toLocaleTimeString()}</td>
+                  <td>{item.temperature()}</td>
+                  <td>{item.windspeed()}</td>
                   <td>
-                    {weatherdata.currentWindGust()} - {weatherdata.windGustMax()} - {weatherdata.windGustMin()}
+                    {item.currentWindGust()} - {item.windGustMax()} - {item.windGustMin()}
                   </td>
-                  <td>{item.RainTotal }</td>
+                  <td>{item.data.RainTotal }</td>
                 </tr>
               )}
-            )}            
+            )}     
+            </tbody>       
           </table>
         </div>
         :

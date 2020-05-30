@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^1.1.18",
+    "aws-amplify": "^1.1.38",
     "normalize.css": "^8.0.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.2"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "recharts": "^1.8.5",
+    "victory": "^34.3.7"
   },
   "scripts": {
     "start": "react-scripts start",

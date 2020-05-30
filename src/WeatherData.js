@@ -4,6 +4,13 @@ export default class WeatherData {
         this.data = data;
     }
 
+    time() {
+        return this.data.timestamp.substring(11,16);
+    }
+
+    timestampAsDate() {
+        return new Date(this.data.timestamp);
+    }
     // celcius - formatted with 1 decimal
     temperature() {
         return Math.round(this.data.temperature * 100)/100;

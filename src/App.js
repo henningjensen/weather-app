@@ -11,7 +11,7 @@ class App extends Component {
           <Link to="/">Været på Søndre Lindheim Gard - Gvarv</Link>
         </h1>
         <Routes />
-        <Link to="/today" class="waves-effect waves-light btn">Historikk - i dag</Link>
+        <Link to="/today" className="waves-effect waves-light btn">Historikk - i dag</Link>
       </div>
     );
   }
